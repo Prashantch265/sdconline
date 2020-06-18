@@ -47,13 +47,13 @@ class LoginForm extends React.Component{
         };
     
         return(
-            <Container className="col-md-6 mt-5">
-                <Card bg="light">
-                    <Card.Img className="col-sm-3 mt-2 ml-auto mr-auto" style={{width: '150px', position: 'relative'}} src={logo} />
-                    <Card.Title className="mt-3" style={{textAlign: 'center', fontSize: '20pt'}}>Login</Card.Title>
+            <Container className="col-md-6 col-xl-4 my-5">
+                <Card bg="light" className="p-4">
+                    <Card.Img className="d-block mt-3 mx-auto" style={{width: '100px'}} src={logo} />
+                    <Card.Title className="mt-3 text-center" style={{fontSize:'1.5rem'}} >Login</Card.Title>
                     
                     <Form onSubmit={handleSubmit(onSubmit)}>
-                        <Form.Group className=" ml-5 mr-5" controlId="std_id">
+                        <Form.Group  controlId="std_id">
                             <Form.Label >Student ID</Form.Label>
                             <Form.Control type="text" placeholder="XX/07X" name="std_id"
                             err={err.std_id}
@@ -68,7 +68,7 @@ class LoginForm extends React.Component{
                             </p>
                         </Form.Group>
     
-                        <Form.Group className="ml-5 mr-5" controlId="email">
+                        <Form.Group controlId="email">
                             <Form.Label>Email address</Form.Label>
                             <Form.Control type="email" placeholder="name@example.com" name="email"
                             err={err.email}
@@ -83,7 +83,7 @@ class LoginForm extends React.Component{
                             </p>
                         </Form.Group>
     
-                        <Form.Group className="ml-5 mr-5" controlId="name">
+                        <Form.Group  controlId="name">
                             <Form.Label>Student name</Form.Label>
                             <Form.Control type="text" placeholder="full name" name="name"
                             err={err.name}
@@ -99,12 +99,15 @@ class LoginForm extends React.Component{
                                 {err.namenotfound}
                             </p>
                         </Form.Group>
-    
-                        <Form.Group className="ml-5 mr-5" controlId="remember_me">
+                         <div className="d-flex align-items-center justify-content-between">
+                         <Form.Group  controlId="remember_me" className="mb-0">
                         <Form.Check type="checkbox" label="Remember me" name="checkbox"
                         ref={register}/>
                         </Form.Group>
-                            <Button className="ml-5 mr-5 mb-5" variant="primary" type="submit">Submit</Button>
+                        <Button  variant="primary" type="submit">Submit</Button>
+                        </div>       
+                       
+                            
                     </Form>
                 </Card>
             </Container>
