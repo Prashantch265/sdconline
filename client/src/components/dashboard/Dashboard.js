@@ -1,10 +1,11 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import {Route, Switch, useRouteMatch, useParams} from 'react-router-dom';
+import {Route, Switch, useRouteMatch, useParams,Link} from 'react-router-dom';
 import Navbar from '../toolbar/Navbar';
 import Sidebar from '../toolbar/Sidebar';
 import Home from '../pages/Home';
 import Events from '../pages/Events';
+import Content from './Content'
 
 export default function Dashboard(){
     // The `path` lets us build <Route> paths that are
@@ -19,28 +20,31 @@ export default function Dashboard(){
     // get from `useParams()`.
     let { topicId } = useParams();
 
-    function Content(){
-        if (topicId === 'events'){
-            return <Events/>;
-        }
-    }
+    // function Content(){
+    //     if (topicId === 'events'){
+    //         return <Events/>;
+    //     }
+    // }
 
     return (
-        <div>
-            <Navbar/>
-            <Sidebar/>
-            <Container className="col-lg-12" id='main'>
-                <Switch>
-                    <Route exact path={path}>
+      
+            <Switch>
+         
+          
+                    <Route exact path="/dashboard">
                         <Home/>
                     </Route>
                     
-                    <Route path={`${path}/:topicId`}>
+                    <Route path="/dashboard/test">
                         <Content />
                     </Route>
-                </Switch>
-            </Container>
-        </div>
+                    <Route path="/dashboard/help">
+                        <h1>This is the help page</h1>
+                    </Route>
+              
+
+            </Switch>
+       
     );
 }
 
