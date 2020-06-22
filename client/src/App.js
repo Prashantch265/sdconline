@@ -7,9 +7,9 @@ import store from "./store";
 import jwt_decode from 'jwt-decode';
 import setAuthToken from './utils/setAuthToken';
 import {setCurrentUser, logoutUser} from './actions/authActions';
-import PrivateRoute from './components/private-route/PrivateRoute';
 import Dashboard from './components/dashboard/Dashboard';
-import Events from './components/pages/Events';
+import AuthLayout from './layout/AuthLayout';
+import PublicLayout from './layout/PublicLayout';
 
 //check for token to keep user logged in 
 if (localStorage.jwtToken){
@@ -31,6 +31,31 @@ if (localStorage.jwtToken){
   }
 }
 
+const pages =[
+  {
+    exact:true,
+    path:'/',
+    component:Index,
+    layout:PublicLayout
+  },
+  {
+    exact:true,
+    path:'/login',
+    component:Loginpage,
+    layout:PublicLayout
+  },
+  {
+    exact:true,
+    path:[
+      '/dashboard',
+      '/dashboard/events',
+      '/dashboard/help'
+    ],
+    component:Dashboard,
+    layout:AuthLayout
+  }
+]
+
 
 
 class App extends React.Component {
@@ -39,10 +64,27 @@ class App extends React.Component {
       <Provider store={store}>
       <div className="App">
         <Switch>
-        <Route path="/" exact component={Index}/>
-        <Route path="/login" component={Loginpage} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard}/>
-        <Route path="/events" component={Events}/>
+        {pages.map(
+            ({exact,path,component:Component,layout:Layout},index)=>{
+
+              return(
+                <Route
+                  key={index}
+                  exact={exact}
+                  path={path}
+                  render={props=>{
+
+                    return (
+                      <Layout >
+                        <Component {...props}/>
+                      </Layout>
+                    )
+                  }}
+
+                />
+              )
+            }
+          )}
         </Switch>
       </div>
       </Provider>

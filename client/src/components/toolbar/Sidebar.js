@@ -4,7 +4,7 @@ import {NavLink, Container, NavbarBrand} from 'react-bootstrap';
 import './sidebar.css';
 import {FaGithub, FaFacebook, FaInstagram, FaHome, FaCalendarDay, FaQuestionCircle, FaBell} from 'react-icons/fa';
 import {FcTodoList} from 'react-icons/fc';
-import {Link, useRouteMatch } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 class Sidebar extends React.Component{
     constructor (props) {
@@ -34,20 +34,19 @@ class Sidebar extends React.Component{
       }
 
       menu(){
-        let {url} = useRouteMatch();
           return(
               <Menu  isOpen={this.state.menuOpen}
               onStateChange={(state) => this.handleStateChange(state)}>
                   <NavLink onClick={() => this.closeMenu()} className="nav-link">
-                    <Link to={`${url}/`} style={{textDecoration: 'none'}}><FaHome style={{margin:'10px'}}/>Home</Link></NavLink>
+                    <Link to="/dashboard" style={{textDecoration: 'none'}}><FaHome style={{margin:'10px'}}/>Home</Link></NavLink>
                   <NavLink onClick={() => this.closeMenu()} className="nav-link">
-                    <Link to={`${url}/notification`} style={{textDecoration: 'none'}}><FaBell style={{margin:'10px'}}/>Notification</Link></NavLink>
+                    <Link to="/dashboard/notification" style={{textDecoration: 'none'}}><FaBell style={{margin:'10px'}}/>Notification</Link></NavLink>
                   <NavLink onClick={() => this.closeMenu()} className="nav-link">
-                    <Link to={`${url}/events`} style={{textDecoration: 'none'}}><FaCalendarDay style={{margin:'10px'}}/>Event Management</Link></NavLink>
+                    <Link to="/dashboard/events" style={{textDecoration: 'none'}}><FaCalendarDay style={{margin:'10px'}}/>Event Management</Link></NavLink>
                   <NavLink onClick={() => this.closeMenu()} className="nav-link">
-                    <Link to={`${url}/todos`} style={{textDecoration: 'none'}}><FcTodoList style={{margin:'10px'}}/>To-Do</Link></NavLink>
+                    <Link to="/dashboard/todos" style={{textDecoration: 'none'}}><FcTodoList style={{margin:'10px'}}/>To-Do</Link></NavLink>
                   <NavLink onClick={() => this.closeMenu()} className="nav-link">
-                    <Link to={`${url}/faq`} style={{textDecoration: 'none'}}><FaQuestionCircle style={{margin:'10px'}}/>FAQ</Link></NavLink>
+                    <Link to="/dashboard/faq" style={{textDecoration: 'none'}}><FaQuestionCircle style={{margin:'10px'}}/>FAQ</Link></NavLink>
                   
                   <Container className="md-6 mt-auto ml-5">
                     <NavbarBrand style={{position: 'relative', left: '15px'}}>Developer</NavbarBrand>
