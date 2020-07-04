@@ -3,19 +3,21 @@ const Schema = mongoose.Schema;
 
 //Create Schema and model
 
-const Stdinfo = new Schema({
-    name:{ 
-        type: String,
-        required: true
-    },
+const StdSchema = new Schema({
     std_id:{
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     email:{
+        type: String,
+        required: true,
+        unique: true
+    },
+    name:{ 
         type: String,
         required: true
     }
 })
 
-module.exports = Students = mongoose.model('students',Stdinfo);
+module.exports = Students = mongoose.model('students',StdSchema);
